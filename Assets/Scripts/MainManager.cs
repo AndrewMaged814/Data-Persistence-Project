@@ -8,6 +8,9 @@ using TMPro;
 public class MainManager : MonoBehaviour
 {
     public static MainManager instance;
+
+    private GameManager gameManager;
+
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -16,35 +19,37 @@ public class MainManager : MonoBehaviour
     public Text HighScoreText;
     public Text nameText;
     public GameObject GameOverText;
-    
+
     private bool m_Started = false;
     private int m_Points;
     public int highScore;
-    
+
 
     private bool m_GameOver = false;
     private void Awake()
     {
-        if(instance != null)
+        if (!instance)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        nameText.text = SaveScript.user.UserName;
-        HighScoreText.text = SaveScript.user.UserScore.ToString();
+        else
+        {
+            //Duplicate GameManager created every time the scene is loaded
+            Destroy(gameObject);
+        }
 
     }
 
     void Start()
     {
+        gameManager = GameManager.Instance;
+        nameText.text = GameManager.user.UserName;
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
-        
-        int[] pointCountArray = new [] {1,1,2,2,5,5};
+
+        int[] pointCountArray = new[] { 1, 1, 2, 2, 5, 5 };
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
@@ -91,17 +96,21 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         checkHighscore();
+
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
 
     private void checkHighscore()
     {
-        if (m_Points > highScore)
+        if (m_Points > GameManager.user.UserScore)
         {
-            highScore = m_Points;
+            GameManager.user.UserScore = m_Points;
+            HighScoreText.text = "NEW HIGHSCORE!";
+            gameManager.UpdatePlayerScore(m_Points);
         }
         Debug.Log("Score: " + m_Points);
         Debug.Log("HighScore: " + highScore);
     }
+
 }
