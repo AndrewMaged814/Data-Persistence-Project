@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 2.7895508, w: 4.3447266}
+  m_margin: {x: 0, y: 0, z: -56.35367, w: -29.451477}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1780,7 +1780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -698, y: 26.3996}
+  m_AnchoredPosition: {x: -723, y: 10}
   m_SizeDelta: {x: 354.1675, y: 88.7961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1511172426
@@ -3528,7 +3528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1980738052628959317, guid: b3f79f8b55878bd48b3c52aac522c20c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -140
+      value: -191
       objectReference: {fileID: 0}
     - target: {fileID: 1980738052628959317, guid: b3f79f8b55878bd48b3c52aac522c20c, type: 3}
       propertyPath: m_AnchoredPosition.y

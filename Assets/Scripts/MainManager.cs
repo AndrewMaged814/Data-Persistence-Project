@@ -7,7 +7,6 @@ using TMPro;
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager instance;
 
     private GameManager gameManager;
 
@@ -26,22 +25,8 @@ public class MainManager : MonoBehaviour
 
 
     private bool m_GameOver = false;
-    private void Awake()
-    {
-        if (!instance)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            //Duplicate GameManager created every time the scene is loaded
-            Destroy(gameObject);
-        }
 
-    }
-
-    void Start()
+     void Start()
     {
         gameManager = GameManager.Instance;
         nameText.text = GameManager.user.UserName;
@@ -95,8 +80,6 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        checkHighscore();
-
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
@@ -109,8 +92,6 @@ public class MainManager : MonoBehaviour
             HighScoreText.text = "NEW HIGHSCORE!";
             gameManager.UpdatePlayerScore(m_Points);
         }
-        Debug.Log("Score: " + m_Points);
-        Debug.Log("HighScore: " + highScore);
     }
 
 }

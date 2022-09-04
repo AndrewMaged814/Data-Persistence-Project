@@ -6,6 +6,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody m_Rigidbody;
+    public AudioSource blipSound;
+    public AudioClip AudioClip;
 
     void Start()
     {
@@ -14,6 +16,7 @@ public class Ball : MonoBehaviour
     
     private void OnCollisionExit(Collision other)
     {
+        blipSound.PlayOneShot(AudioClip);
         var velocity = m_Rigidbody.velocity;
         
         //after a collision we accelerate a bit
@@ -26,9 +29,9 @@ public class Ball : MonoBehaviour
         }
 
         //max velocity
-        if (velocity.magnitude > 3.0f)
+        if (velocity.magnitude > 5.0f)
         {
-            velocity = velocity.normalized * 3.0f;
+            velocity = velocity.normalized * 5.0f;
         }
 
         m_Rigidbody.velocity = velocity;

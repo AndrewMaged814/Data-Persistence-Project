@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
         user.UserName = data.name;
         user.UserScore = data.score;
-        Debug.Log("Name " + user.UserName + "Score" + user.UserScore);
 
         ShowDatatoMenu();
     }
